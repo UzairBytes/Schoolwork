@@ -15,7 +15,23 @@
  */
 
 /* Write your solution here */
-
+void fib(int** fibseq, int num){
+    *fibseq = malloc(sizeof(int) * num);
+    if (num == 1){
+        fibseq[0][0] = 0;
+    }
+    else if (num == 2){
+        fibseq[0][0] = 0;
+        fibseq[0][1] = 1;
+    }
+    else{
+        fibseq[0][0] = 0;
+        fibseq[0][1] = 1;
+        for (int x = 2; x < num; x++){
+            fibseq[0][x] = fibseq[0][x-1] + fibseq[0][x-2];
+        }
+    }
+}
 
 int main(int argc, char **argv) {
     /* do not change this main function */
