@@ -37,9 +37,24 @@ int main(int argc, char **argv) {
     char greeting[20];
     char *name = argv[2];
 
-    // Your code goes here
+    
+    int greeting_length = strlen(argv[1]);
+    
 
+    int allowable_length = 20;
+    greeting[19] = '\0';
+    allowable_length--;
+    strncat(greeting, argv[1], allowable_length);
 
+    allowable_length -= greeting_length;
+    if (allowable_length > 0){
+        greeting[greeting_length] = ' ';
+        allowable_length--;
+    }
+    if (allowable_length > 0){
+        strncat(greeting, name, allowable_length);
+    }
+    
     printf("%s\n", greeting);
     return 0;
 }
