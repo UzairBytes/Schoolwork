@@ -21,7 +21,7 @@ void print_image(int num_rows, int num_cols, int arr[num_rows][num_cols]) {
         printf("\n");
     }
 }
-
+/* Eliminate each found cell in  array arr in its entirety to prevent miscounting */
 void eliminate_cell(int x, int y, int num_rows, int num_cols, int arr[num_rows][num_cols]){
     arr[x][y]=0;
     
@@ -39,10 +39,8 @@ void eliminate_cell(int x, int y, int num_rows, int num_cols, int arr[num_rows][
     }
 }
 
-/* TODO: Write the count_cells function */
+/* Count the number of cells in array arr */
 int count_cells(int num_rows, int num_cols, int arr[num_rows][num_cols]) {
-    // Count the number of cells by looking for the one pixel of the cell that
-    // has no  non-zero pixel around it.
     int num_cells = 0;
     for (int row = 0; row < num_rows; row++){
         for (int col = 0; col < num_cols; col++){
