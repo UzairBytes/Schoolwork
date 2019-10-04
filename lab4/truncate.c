@@ -11,6 +11,17 @@
     if s is the string "function" and n is 3, then truncate() changes s to
     the string "fun" and returns 5.
 */
+int truncate(char* arr, int amount){
+    int original = strlen(arr);
+    int difference = original - amount;
+    if (original <= amount){
+        return 0;
+    }
+
+    arr[amount] = '\0';
+
+    return difference;
+}
 
 
 
