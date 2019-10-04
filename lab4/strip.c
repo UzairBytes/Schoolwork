@@ -20,7 +20,21 @@
 */
 
 // Write the function strip_q_marks here
+int strip_q_marks(char* arr){
+    int length = strlen(arr);
+    int num_q = 0;
 
+    for (int x = length - 1; x >= 0; x--){
+        if (arr[x] == '?'){
+            num_q++;
+            arr[x] = '\0';
+        }
+        else{
+            break;
+        }
+    }
+    return num_q;
+}
 
 int main(int argc, char **argv) {
     // Do not change this main function.
