@@ -1,0 +1,155 @@
+Starting program: /h/u14/c7/00/chudhary/chudhary/lab6/overflow 
+[Inferior 1 (process 37752) exited normally]
+1	#include <stdio.h>
+2	
+3	#define SIZE 4
+4	#define OVERFLOW 5
+5	
+6	int main() {
+7	    int index = 0;
+8	    int i;
+9	    int before[SIZE] = {10, 10, 10, 10};
+10	    int a[SIZE] = {0, 0, 0, 0};
+11	    int after[SIZE] = {10, 10, 10, 10};
+12	
+13	    printf("Address of the variables:\n");
+14	    for (index = 0; index < SIZE; index++) {
+15	        printf("%lx -> &after[%d]\n", (unsigned long) &after[index], index);
+16	    }
+17	    for (index = 0; index < SIZE; index++) {
+18	        printf("%lx -> &a[%d]\n", (unsigned long) &a[index], index);
+19	    }
+20	    for (index = 0; index < SIZE; index++) {
+Breakpoint 1 at 0x4006a2: file overflow.c, line 14.
+Breakpoint 2 at 0x40067c: file overflow.c, line 11.
+Starting program: /h/u14/c7/00/chudhary/chudhary/lab6/overflow 
+
+Breakpoint 2, main () at overflow.c:11
+11	    int after[SIZE] = {10, 10, 10, 10};
+Continuing.
+
+Breakpoint 1, main () at overflow.c:14
+14	    for (index = 0; index < SIZE; index++) {
+15	        printf("%lx -> &after[%d]\n", (unsigned long) &after[index], index);
+14	    for (index = 0; index < SIZE; index++) {
+15	        printf("%lx -> &after[%d]\n", (unsigned long) &after[index], index);
+14	    for (index = 0; index < SIZE; index++) {
+1: after = {10, 10, 10, 10}
+15	        printf("%lx -> &after[%d]\n", (unsigned long) &after[index], index);
+1: after = {10, 10, 10, 10}
+14	    for (index = 0; index < SIZE; index++) {
+1: after = {10, 10, 10, 10}
+15	        printf("%lx -> &after[%d]\n", (unsigned long) &after[index], index);
+1: after = {10, 10, 10, 10}
+14	    for (index = 0; index < SIZE; index++) {
+1: after = {10, 10, 10, 10}
+17	    for (index = 0; index < SIZE; index++) {
+1: after = {10, 10, 10, 10}
+18	        printf("%lx -> &a[%d]\n", (unsigned long) &a[index], index);
+1: after = {10, 10, 10, 10}
+17	    for (index = 0; index < SIZE; index++) {
+1: after = {10, 10, 10, 10}
+18	        printf("%lx -> &a[%d]\n", (unsigned long) &a[index], index);
+1: after = {10, 10, 10, 10}
+17	    for (index = 0; index < SIZE; index++) {
+1: after = {10, 10, 10, 10}
+18	        printf("%lx -> &a[%d]\n", (unsigned long) &a[index], index);
+1: after = {10, 10, 10, 10}
+17	    for (index = 0; index < SIZE; index++) {
+1: after = {10, 10, 10, 10}
+18	        printf("%lx -> &a[%d]\n", (unsigned long) &a[index], index);
+1: after = {10, 10, 10, 10}
+17	    for (index = 0; index < SIZE; index++) {
+1: after = {10, 10, 10, 10}
+20	    for (index = 0; index < SIZE; index++) {
+1: after = {10, 10, 10, 10}
+21	        printf("%lx -> &before[%d]\n", (unsigned long) &before[index], index);
+1: after = {10, 10, 10, 10}
+20	    for (index = 0; index < SIZE; index++) {
+1: after = {10, 10, 10, 10}
+21	        printf("%lx -> &before[%d]\n", (unsigned long) &before[index], index);
+1: after = {10, 10, 10, 10}
+20	    for (index = 0; index < SIZE; index++) {
+1: after = {10, 10, 10, 10}
+21	        printf("%lx -> &before[%d]\n", (unsigned long) &before[index], index);
+1: after = {10, 10, 10, 10}
+20	    for (index = 0; index < SIZE; index++) {
+1: after = {10, 10, 10, 10}
+21	        printf("%lx -> &before[%d]\n", (unsigned long) &before[index], index);
+1: after = {10, 10, 10, 10}
+20	    for (index = 0; index < SIZE; index++) {
+1: after = {10, 10, 10, 10}
+23	    printf("%lx -> &i\n", (unsigned long)&i);
+1: after = {10, 10, 10, 10}
+24	    printf("%lx -> &index\n", (unsigned long)&index);
+1: after = {10, 10, 10, 10}
+25	    printf("\n");
+1: after = {10, 10, 10, 10}
+28	    printf("Initial values:\n");
+1: after = {10, 10, 10, 10}
+29	    printf("i = %d\n", i);
+1: after = {10, 10, 10, 10}
+30	    printf("before = {%d, %d, %d, %d}\n", before[0], before[1], before[2], before[3]);
+1: after = {10, 10, 10, 10}
+31	    printf("a = {%d, %d, %d, %d}\n", a[0], a[1], a[2], a[3]);
+1: after = {10, 10, 10, 10}
+32	    printf("after = {%d, %d, %d, %d}\n", after[0], after[1], after[2], after[3]);
+1: after = {10, 10, 10, 10}
+33	    printf("\n");
+1: after = {10, 10, 10, 10}
+36	    for (i = 0; i < OVERFLOW; i++) {
+1: after = {10, 10, 10, 10}
+37	        a[i] = i * 10;
+1: after = {10, 10, 10, 10}
+38	        printf("i = %d\n", i);
+1: after = {10, 10, 10, 10}
+39	        printf("before = {%d, %d, %d, %d}\n", before[0], before[1], before[2], before[3]);
+1: after = {10, 10, 10, 10}
+40	        printf("a = {%d, %d, %d, %d}\n", a[0], a[1], a[2], a[3]);
+1: after = {10, 10, 10, 10}
+41	        printf("after = {%d, %d, %d, %d}\n", after[0], after[1], after[2], after[3]);
+1: after = {10, 10, 10, 10}
+36	    for (i = 0; i < OVERFLOW; i++) {
+1: after = {10, 10, 10, 10}
+37	        a[i] = i * 10;
+1: after = {10, 10, 10, 10}
+38	        printf("i = %d\n", i);
+1: after = {10, 10, 10, 10}
+39	        printf("before = {%d, %d, %d, %d}\n", before[0], before[1], before[2], before[3]);
+1: after = {10, 10, 10, 10}
+40	        printf("a = {%d, %d, %d, %d}\n", a[0], a[1], a[2], a[3]);
+1: after = {10, 10, 10, 10}
+41	        printf("after = {%d, %d, %d, %d}\n", after[0], after[1], after[2], after[3]);
+1: after = {10, 10, 10, 10}
+36	    for (i = 0; i < OVERFLOW; i++) {
+1: after = {10, 10, 10, 10}
+37	        a[i] = i * 10;
+1: after = {10, 10, 10, 10}
+38	        printf("i = %d\n", i);
+1: after = {10, 10, 10, 10}
+39	        printf("before = {%d, %d, %d, %d}\n", before[0], before[1], before[2], before[3]);
+1: after = {10, 10, 10, 10}
+40	        printf("a = {%d, %d, %d, %d}\n", a[0], a[1], a[2], a[3]);
+1: after = {10, 10, 10, 10}
+41	        printf("after = {%d, %d, %d, %d}\n", after[0], after[1], after[2], after[3]);
+1: after = {10, 10, 10, 10}
+36	    for (i = 0; i < OVERFLOW; i++) {
+1: after = {10, 10, 10, 10}
+37	        a[i] = i * 10;
+1: after = {10, 10, 10, 10}
+38	        printf("i = %d\n", i);
+1: after = {10, 10, 10, 10}
+39	        printf("before = {%d, %d, %d, %d}\n", before[0], before[1], before[2], before[3]);
+1: after = {10, 10, 10, 10}
+40	        printf("a = {%d, %d, %d, %d}\n", a[0], a[1], a[2], a[3]);
+1: after = {10, 10, 10, 10}
+41	        printf("after = {%d, %d, %d, %d}\n", after[0], after[1], after[2], after[3]);
+1: after = {10, 10, 10, 10}
+36	    for (i = 0; i < OVERFLOW; i++) {
+1: after = {10, 10, 10, 10}
+37	        a[i] = i * 10;
+1: after = {10, 10, 10, 10}
+38	        printf("i = %d\n", i);
+1: after = {40, 10, 10, 10}
+$1 = (int *) 0x7fffffffe710
+$2 = (int *) 0x7fffffffe710
