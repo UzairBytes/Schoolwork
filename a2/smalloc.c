@@ -14,6 +14,49 @@ struct block *allocated_list;
 
 void *smalloc(unsigned int nbytes) {
 	//TODO
+    struct block* current = freelist;
+    struct block* previous = freelist;
+
+    //Calculate the offset and, if it is non-zero, add it to nbytes.
+    int offset = 0;
+    if((nbytes % 8) != 0){
+        offset = 8 - (nbytes %8 );
+        nbytes = nbytes + offset;
+    }
+
+    //Iterate through freelist to find a block large enough to hold nbytes.
+    while(current != NULL){
+        if(current->size >= nbytes){
+            break;
+        }
+        previous = current;
+        current = current->next;
+    }
+    //If current has reached NULL, then there isn't any block large enough
+    //for nbytes and we can end the function.
+    if(current == NULL){
+        return NULL;
+    }
+    //If the current size is equal to nbytes, we don't need to allocate any
+    //new memory. If current size is greater, then we do.
+    if((current->size) > nbytes){
+        struct block* new_node = malloc(sizeof(struct block));
+        new_node->addr = current->addr;
+        new_node->size = nbytes;
+        new_node->next = allocated_list;
+        allocated_list = new_node;
+
+        current->addr = (current->addr) + nbytes;
+        current->size = current->size - nbytes;
+        return new_node->addr;
+    }
+    if((current->size) == nbytes){
+        previous->next = current->next;
+        current->next = allocated_list;
+        allocated_list = current;
+        return current->addr;
+
+    }
     return NULL;
 }
 
