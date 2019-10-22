@@ -15,7 +15,7 @@ struct block *allocated_list;
  * If the memory cannot be reserved (i.e. there is no block that is large enough to hold nbytes bytes), returns NULL
 */
 void *smalloc(unsigned int nbytes) {
-	//Initialize block pointers for freelist.
+	//Initialize block pointers to traverse freelist.
     struct block* current = freelist;
     struct block* previous = freelist;
 
@@ -68,7 +68,7 @@ void *smalloc(unsigned int nbytes) {
  * If the specified address is not found, returns -1.
  */
 int sfree(void *addr) {
-    //Initialize block pointers from allocated list.
+    //Initialize block pointers to traverse allocated list.
 	struct block* current = allocated_list;
     struct block* previous = allocated_list;
 
@@ -126,15 +126,32 @@ void mem_init(int size) {
     freelist = malloc(sizeof(struct block));
 	
     //Set values for freelist
-
     freelist->addr = mem;
     freelist->size = size;
     freelist->next = NULL;
         
 }
 
+//Free ALL dynamically allocated memory.
 void mem_clean(){
+    //Initialize block pointers to traverse both lists.
+    struct block* allocated = allocated_list;
+    struct block* free_node = freelist;
 
-	//TODO
+    //Traverse allocated and free each node.
+    while(allocated != NULL){
+        free(allocated);
+        allocated = allocated->next;
+    }
+    // Traverse freelist and free each node
+    while(free_node!=NULL){
+        free(free_node);
+        free_node = free_node->next;
+    }
+
+    //Free freelist as it is also dynamically allocated
+    //in mem_init.
+    free(freelist);
+	
 }
 
