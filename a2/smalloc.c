@@ -47,7 +47,14 @@ void mem_init(int size) {
          exit(1);
     }
 
-	//TODO
+    //Initialize freelist array
+    freelist = malloc(sizeof(struct block));
+	
+    //Set values for freelist
+
+    freelist->addr = mem;
+    freelist->size = size;
+    freelist->next = NULL;
         
 }
 
