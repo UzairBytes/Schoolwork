@@ -45,10 +45,14 @@ void *smalloc(unsigned int nbytes) {
     if((current->size) == nbytes){
         if (current == previous){
             freelist = current->next;
+            current->next = allocated_list;
+            allocated_list = current;
         }
-        previous->next = current->next;
-        current->next = allocated_list;
-        allocated_list = current;
+        else{
+            previous->next = current->next;
+            current->next = allocated_list;
+            allocated_list = current;
+        }    
         return current->addr;
     }
     
