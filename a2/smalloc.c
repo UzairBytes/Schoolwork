@@ -42,14 +42,14 @@ void *smalloc(unsigned int nbytes) {
     //If the current size is equal to nbytes, we don't need to allocate any
     //new memory. If current size is greater, then we do. Returns the address
     //of the block.
-    if(current->size == nbytes){
+    if((current->size) == nbytes){
         previous->next = current->next;
         current->next = allocated_list;
         allocated_list = current;
         return current->addr;
     }
     
-    if(current->size > nbytes){
+    if((current->size) > nbytes){
         struct block* new_node = malloc(sizeof(struct block));
         new_node->addr = current->addr;
         new_node->size = nbytes;
@@ -144,14 +144,10 @@ void mem_clean(){
         allocated = allocated->next;
     }
     // Traverse freelist and free each node
-    while(free_node!=NULL){
+    while(free_node != NULL){
         free(free_node);
         free_node = free_node->next;
     }
-
-    //Free freelist as it is also dynamically allocated
-    //in mem_init.
-    free(freelist);
 	
 }
 
