@@ -43,6 +43,9 @@ void *smalloc(unsigned int nbytes) {
     //new memory. If current size is greater, then we do. Returns the address
     //of the block.
     if((current->size) == nbytes){
+        if (current == previous){
+            freelist = current->next;
+        }
         previous->next = current->next;
         current->next = allocated_list;
         allocated_list = current;
